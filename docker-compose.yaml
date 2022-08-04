@@ -1,0 +1,13 @@
+services:
+    app:
+      build: .
+      image: watersheds:latest
+      container_name: watersheds
+      command: /usr/local/bin/gunicorn -w 3 -b :5000 wsgi:app
+      ports:
+        - "8047:5000"
+      volumes:
+        - .:/app
+        - uploaded:/uploaded
+volumes:
+  uploaded:
