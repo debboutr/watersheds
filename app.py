@@ -29,7 +29,7 @@ def allowed_file(filename):
 @app.route("/", methods=["GET", "POST"])
 def upload_file():
     print("contents of uploaded:", os.listdir("/uploaded"))
-    print("IP:", request.remote_addr)
+    print("IP:", str(request.remote_addr))
     if request.method == "POST":
         # check if the post request has the file part
         if "file" not in request.files:
@@ -39,7 +39,7 @@ def upload_file():
         # If the user does not select a file, the browser submits an
         # empty file without a filename.
         if file.filename == "":
-            flash("No selected file. IP: ", request.remote_addr)
+            flash(f"No selected file. IP: {request.remote_addr}")
             return redirect(request.url)
         if file:
             print(app.config)
